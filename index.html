@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Roof Edinburgh</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/leaflet-groupedlayercontrol/leaflet.groupedlayercontrol.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon-76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon-120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon-152.png">
+    <link rel="icon" sizes="196x196" href="assets/img/favicon-196.png">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="navbar-icon-container">
+                    <a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i
+                            class="fa fa-bars fa-lg white"></i></a>
+                </div>
+                <a class="navbar-brand" href="#">Roof Edinburgh</a>
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="about-btn"><i
+                                class="fa fa-question-circle white"></i>&nbsp;&nbsp;About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="container">
+        <div id="map">
+            <br>
+            <form action="../cgi-bin/database.py" method="post" onsubmit="validateForm()" target="map" class="basic-grey">
+                <label>Location(Postcode):
+                    <input type="text" placeholder="eg. EH8 9YL" name="postcode" id="postcode" pattern="\w*\s\w*"
+                        required />
+                </label>
+                <input type="button" onclick="check()" onmouseout="enable_submit()" value="Check" /> *Required
+                <br><br>
+                <label>Address:
+                    <input type="text" name="addr" id="addr" readonly="readonly" size="70">
+                </label>
+                <br><br>
+                <label>
+                    Latitude:<input id="lat" name="lat" readonly="readonly" />
+                    Longitude:<input id="lon" name="lon" readonly="readonly" />
+                </label>
+                <br><br>
+                <label>NeighbourHood:
+                    <select name="nei">
+                        <option value="all">All</option>
+                        <option value="Alnwickhill">Alnwickhill</option>
+                        <option value="Bellevue/Broughton">Bellevue/Broughton</option>
+                        <option value="Calton Hill">Calton Hill</option>
+                        <option value="Canongate">Canongate</option>
+                        <option value="Comely Bank">Comely Bank</option>
+                        <option value="Corstorphine">Corstorphine</option>
+                        <option value="Craigleith">Craigleith</option>
+                        <option value="Craigmillar/Niddrie">Craigmillar/Niddrie</option>
+                        <option value="Dumbiedykes">Dumbiedykes</option>
+                        <option value="Dumbryden">Dumbryden</option>
+                        <option value="Gayfield/Broughton St">Gayfield/Broughton St</option>
+                        <option value="Granton/West Pilton">Granton/West Pilton</option>
+                        <option value="Leith">Leith</option>
+                        <option value="Morningside">Morningside</option>
+                        <option value="Old Town">Old Town</option>
+                        <option value="Oxgangs/Colinton Mains/Firrhill">Oxgangs/Colinton Mains/Firrhill</option>
+                        <option value="Peffermill">Peffermill</option>
+                        <option value="Portobello">Portobello</option>
+                        <option value="Southside">Southside</option>
+                    </select>
+                </label>
+                <label>
+                    <input type="checkbox" name="cover" id="cover" onclick="show_list('cover')" value="yes" />
+                    Show Service Covered?
+                    <select style="display:none" id="cover_list" name="cover_list">
+                        <option value="0">All</option>
+                        <option value="1">Safety</option>
+                        <option value="2">Health</option>
+                    </select>
+                </label>
+                <br><br>
+                <label>Service Needed:
+                    <select name="service_type" id="service_type" onchange="hideShowOptions(this.value)">
+                        <option value="0" selected="selected">All</option>
+                        <option value="1">Shelter</option>
+                        <option value="2">Police Station</option>
+                        <option value="3">Hospital</option>
+                        <option value="4">Information Hub</option>
+                    </select>
+                </label>
+                <label>
+                    <input type="checkbox" name="nearcover" id="nearcover" onclick="show_list('nearcover')"
+                        value="yes" />
+                    Show Nearby Service Area?
+                    <select style="display:none" id="nearcover_list" name="nearcover_list">
+                        <option value="0">All</option>
+                        <option value="1">Safety</option>
+                        <option value="2">Health</option>
+                    </select>
+                </label>
+                <br><br>
+                <label>
+                    <input type="checkbox" name="nearby" id="nearby" onclick="show_list('nearby')" value="yes" />
+                    Find Nearby Service?
+                    <select style="display:none" id="nearby_list" name="nearby_service">
+                        <option value="0">All</option>
+                        <option value="1">Shelter</option>
+                        <option value="2">Police Station</option>
+                        <option value="3">Hospital</option>
+                        <option value="4">Information Hub</option>
+                    </select>
+                </label>
+                <br><br>
+                <label>
+                    <input type="checkbox" name="bus" id="bus" onclick="show_list('bus')" value="yes" />
+                    Bus Travel Information?
+                    <select style="display:none" id="bus_list" name="bus_list">
+                        <option value="0">All</option>
+                        <option value="1">Nearby</option>
+                    </select>
+                </label>
+                <br><br>
+                <input type="submit" id="submit" value="Search" disabled="disabled">
+            </form>
+            <div>
+            <iframe name="map" width="100%" height="600px" id="pymap"  style="display:none" src="" title="Map"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Welcome to Roof Edinburgh!</h4>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs nav-justified" id="aboutTabs">
+                        <!--About Header -->
+                        <li class="active"><a href="#about" data-toggle="tab"><i
+                                    class="fa fa-question-circle"></i>&nbsp;About
+                                the project</a></li>
+                        <!--Disclaimer Header -->
+                        <li><a href="#disclaimer" data-toggle="tab"><i
+                                    class="fa fa-exclamation-circle"></i>&nbsp;Disclaimer</a>
+                        </li>
+                        <!--Acknowledgement Header -->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                                    class="fa fa-globe"></i>&nbsp;Acknowledgement
+                                <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#RawData-tab" data-toggle="tab">RawData</a></li>
+                                <li><a href="#html-tab" data-toggle="tab">HTML Template</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!--Contents -->
+                    <div class="tab-content" id="aboutTabsContent">
+                        <!--About Projects -->
+                        <div class="tab-pane fade active in" id="about">
+                            <p>A group project by students of School of GeoScience, The University of Edinburgh. </p>
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">This Project:</div>
+                                <ul class="list-group">
+                                    <li class="list-group-item">Has Fullscreen mobile-friendly map with navbar
+                                    </li>
+                                    <li class="list-group-item">Has Multiple options provided for users
+                                    </li>
+                                    <li class="list-group-item">Is Based on Leaflets and Oracle Spatial using Python
+                                    </li>
+                                    <li class="list-group-item">Is Developed by <b>Andaleeb Ali</b>, <b>Shiqi Chen</b>,
+                                        <b>Haoyu Zhang</b>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--Disclaimer -->
+                        <div id="disclaimer" class="tab-pane fade text-danger">
+                            <p>The data provided on this site is for course project display purposes only.</p>
+                            <p>Absolutely no accuracy or completeness guarantee is implied or intended. All information
+                                on
+                                this map is subject to such variations and corrections as might result from a complete
+                                title
+                                search and/or accurate field survey.</p>
+                            <p></p>
+                        </div>
+                        <!--Metadata -->
+                        <div class="tab-pane fade" id="RawData-tab">
+                            <p><a href="https://data.edinburghcouncilmaps.info/datasets/9961be54aa5649aebfb5f2cde53fa432_27/explore"
+                                    target="_blank">Nature Neighbourhood</a></p>
+                        </div>
+                        <div class="tab-pane fade" id="html-tab">
+                            <p><a href="https://github.com/bmcbride/bootleaf" target="_blank">BootLeaf</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+
+
+<script>
+    function show_list(flag) {
+        let checkBox = document.getElementById(flag);
+        // Get the corresponding list object
+        let select_list = document.getElementById(flag + "_list");
+        // If the checkbox is checked, display the list
+        if (checkBox.checked === true) {
+            select_list.style.display = "inline";
+        }
+        else {
+            select_list.style.display = "none";
+        }
+    }
+
+    function hideShowOptions(x) {
+        let hideTrigger = [0, 1, 2, 3, 4];
+        let list = $('#nearby_list')
+        switch (x) {
+            case hideTrigger[0].toString():
+                list.children('option[value="0"]').css('display', 'block');;
+                list.children('option[value="1"]').css('display', 'block');
+                list.children('option[value="2"]').css('display', 'block');
+                list.children('option[value="3"]').css('display', 'block');
+                list.children('option[value="4"]').css('display', 'block');
+                break;
+            case hideTrigger[1].toString():
+                list.children('option[value="1"]').css('display', 'none');
+                list.children('option[value="0"]').css('display', 'block');
+                list.children('option[value="2"]').css('display', 'block');
+                list.children('option[value="3"]').css('display', 'block');
+                list.children('option[value="4"]').css('display', 'block');
+                break;
+            case hideTrigger[2].toString():
+                list.children('option[value="2"]').css('display', 'none');
+                list.children('option[value="1"]').css('display', 'block');
+                list.children('option[value="0"]').css('display', 'block');
+                list.children('option[value="3"]').css('display', 'block');
+                list.children('option[value="4"]').css('display', 'block');
+                break;
+            case hideTrigger[3].toString():
+                list.children('option[value="3"]').css('display', 'none');
+                list.children('option[value="1"]').css('display', 'block');
+                list.children('option[value="2"]').css('display', 'block');
+                list.children('option[value="0"]').css('display', 'block');
+                list.children('option[value="4"]').css('display', 'block');
+                break;
+            case hideTrigger[4].toString():
+                list.children('option[value="4"]').css('display', 'none');
+                list.children('option[value="1"]').css('display', 'block');
+                list.children('option[value="2"]').css('display', 'block');
+                list.children('option[value="3"]').css('display', 'block');
+                list.children('option[value="0"]').css('display', 'block');
+                break;
+            default:
+                list.children('option[value="0"]').css('display', 'block');
+                list.children('option[value="1"]').css('display', 'block');
+                list.children('option[value="2"]').css('display', 'block');
+                list.children('option[value="3"]').css('display', 'block');
+                list.children('option[value="4"]').css('display', 'block');
+        }
+    }
+
+    function validateForm() {
+        display();
+        return true;
+    }
+
+    function enable_submit() {
+        if (document.getElementById("lat").value !== '') {
+            $('#submit').removeAttr("disabled");
+        }
+    }
+
+    function check() {
+        let posts = document.getElementById("postcode").value
+        jQuery.getJSON("https://nominatim.openstreetmap.org/search?postalcode=" + posts + "&format=json&limit=1", function (data) {
+            let tmp_lat = 0
+            let tmp_lon = 0
+            let tmp_addr = ''
+            try {
+                tmp_lat = data[0].lat;
+                tmp_lon = data[0].lon;
+                tmp_addr = data[0].display_name
+            }
+            catch (err) {
+                alert("Incorrect PostCode! Please Check")
+                return
+            }
+            let lat = document.getElementById("lat")
+            let lon = document.getElementById("lon")
+            let addr = document.getElementById("addr")
+            lat.removeAttribute('readonly');
+            lon.removeAttribute('readonly');
+            addr.removeAttribute('readonly');
+            lat.value = tmp_lat;
+            lon.value = tmp_lon;
+            addr.value = tmp_addr;
+            lon.setAttribute('readonly', 'readonly');
+            lat.setAttribute('readonly', 'readonly');
+            addr.setAttribute('readonly', 'readonly');
+        })
+    }
+
+    function display() {
+        let ifrm = document.getElementById('pymap');
+        ifrm.style.display = 'block';
+    }
+    function changeFrameHeight(){
+    var ifm= document.getElementById("pymap"); 
+    ifm.height=document.documentElement.clientHeight;
+
+    }
+
+    window.οnresize=function(){  
+     changeFrameHeight();  
+
+    } 
+
+</script>
+
+</html>

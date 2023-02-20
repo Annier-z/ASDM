@@ -1,0 +1,343 @@
+html, body, #container {
+  height: 100%;
+  width: 100%;
+}
+body {
+  padding-top: 50px;
+}
+input[type="radio"], input[type="checkbox"] {
+  margin: 0;
+}
+#sidebar {
+  display: block;
+  width: 250px;
+  height: 100%;
+  max-width: 100%;
+  float: left;
+}
+#map {
+  width: auto;
+  height: 100%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+#loading {
+  position: absolute;
+  width: 220px;
+  height: 19px;
+  top: 50%;
+  left: 50%;
+  margin: -10px 0 0 -110px;
+  z-index: 20001;
+}
+#features {
+  margin: 0px;
+  border: none;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+    box-shadow: none;
+}
+#sidebar-hide-btn {
+  margin-top: -2px;
+}
+#aboutTabsContent {
+  padding-top: 10px;
+}
+.progress-bar-full {
+  width: 100%;
+}
+.white {
+  color: #FFFFFF;
+}
+.panel-heading{
+   width: 250px;
+}
+.panel-body{
+  width: 250px;
+}
+.feature-row {
+  cursor: pointer;
+  width: 250px;
+}
+.sidebar-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.sidebar-table {
+  position: absolute;
+  width: 100%;
+  top: 103px;
+  bottom: 0px;
+  overflow: auto;
+}
+.leaflet-control-layers {
+  overflow: auto;
+}
+.leaflet-control-layers label {
+  font-weight: normal;
+  margin-bottom: 0px;
+}
+.leaflet-control-layers-list input[type="radio"], input[type="checkbox"] {
+  margin: 2px;
+}
+.table {
+  margin-bottom: 0px;
+}
+.navbar .navbar-brand {
+  font-weight: bold;
+  font-size: 25px;
+  color: #FFFFFF;
+}
+.navbar-collapse.in {
+  overflow-y: hidden;
+}
+.navbar-header .navbar-icon-container {
+  margin-right: 15px;
+}
+.navbar-header .navbar-icon {
+  line-height: 50px;
+  height: 50px;
+}
+.navbar-header a.navbar-icon {
+  margin-left: 25px;
+}
+.typeahead {
+  background-color: #FFFFFF;
+}
+.tt-dropdown-menu {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px 4px 4px 4px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  margin-top: 4px;
+  padding: 4px 0;
+  width: 100%;
+  max-height: 300px;
+  overflow: auto;
+}
+.tt-suggestion {
+  font-size: 14px;
+  line-height: 20px;
+  padding: 3px 10px;
+}
+.tt-suggestion.tt-cursor {
+  background-color: #0097CF;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+.tt-suggestion p {
+  margin: 0;
+}
+.tt-suggestion + .tt-suggestion {
+  border-top: 1px solid #ccc;
+}
+.typeahead-header {
+  margin: 0 5px 5px 5px;
+  padding: 3px 0;
+  border-bottom: 2px solid #333;
+}
+.has-feedback .form-control-feedback {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+}
+#space{
+  overflow: auto;
+
+}
+/* Basic Grey */
+.basic-grey {
+ 
+  margin-left:auto;
+
+       margin-right:auto;
+
+       background: #F7F7F7;
+
+       padding: 25px 15px 25px 10px;
+
+       font: 12px Georgia, "Times New Roman", Times, serif;
+
+       color: #888;
+
+       text-shadow: 1px 1px 1px #FFF;
+
+       border:1px solid #E4E4E4;
+
+}
+
+.basic-grey h1 {
+
+       font-size: 25px;
+
+       padding: 0px 0px 10px 40px;
+
+       display: block;
+
+       border-bottom:1px solid #E4E4E4;
+
+       margin: -10px -15px 30px -10px;;
+
+       color: #888;
+
+}
+
+.basic-grey h1>span {
+
+       display: block;
+
+       font-size: 11px;
+
+}
+
+.basic-grey label {
+
+       display: block;
+
+       margin: 0px;
+
+}
+
+.basic-grey label>span {
+
+       float: left;
+
+       width: 20%;
+
+       text-align: right;
+
+       padding-right: 10px;
+
+       margin-top: 10px;
+
+       color: #888;
+
+}
+
+.basic-grey input[type="text"], .basic-grey input[type="email"], .basic-grey textarea, .basic-grey select {
+
+       border: 1px solid #DADADA;
+
+       color: #888;
+
+       height: 30px;
+
+       margin-bottom: 16px;
+
+       margin-right: 6px;
+
+       margin-top: 2px;
+
+       outline: 0 none;
+
+       padding: 3px 3px 3px 5px;
+
+       width: 70%;
+
+       font-size: 12px;
+
+       line-height:15px;
+
+       box-shadow: inset 0px 1px 4px #ECECEC;
+
+       -moz-box-shadow: inset 0px 1px 4px #ECECEC;
+
+       -webkit-box-shadow: inset 0px 1px 4px #ECECEC;
+
+}
+
+.basic-grey textarea{
+
+       padding: 5px 3px 3px 5px;
+
+}
+
+.basic-grey select {
+
+       background: #FFF  no-repeat right;
+
+       background: #FFF  no-repeat right;
+
+       appearance:none;
+
+       -webkit-appearance:none;
+
+       -moz-appearance: none;
+
+       text-indent: 0.01px;
+
+       text-overflow: '';
+
+       width: 70%;
+
+       height: 35px;
+
+       line-height: 25px;
+
+}
+
+.basic-grey textarea{
+
+       height:100px;
+
+}
+
+.basic-grey .button {
+
+       background: #E27575;
+
+       border: none;
+
+       padding: 10px 25px 10px 25px;
+
+       color: #FFF;
+
+       box-shadow: 1px 1px 5px #B6B6B6;
+
+       border-radius: 3px;
+
+       text-shadow: 1px 1px 1px #9E3F3F;
+
+       cursor: pointer;
+
+}
+
+.basic-grey .button:hover {
+
+       background: #CF7A7A
+
+}
+
+@media (max-width: 992px) {
+  .navbar .navbar-brand {
+    font-size: 18px;
+  }
+}
+@media (max-width: 767px){
+  #sidebar {
+    display: none;
+  }
+  .url-break {
+    word-break: break-all;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+      hyphens: auto;
+  }
+  .dropdown-menu a i{
+    color: #FFFFFF;
+  }
+}
+/* Print Handling */
+@media print {
+  .navbar {
+    display: none !important;
+  }
+  .leaflet-control-container {
+    display: none !important;
+  }
+}
