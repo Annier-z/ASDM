@@ -239,3 +239,17 @@ except:
     print(flags)
     print(cgitb.html(sys.exc_info()))
 ```
+
+## Acknowledgements
+### WebPage  
+* [Bootleaf](https://github.com/bmcbride/bootleaf)  
+* [Folium](https://python-visualization.github.io/folium/)  
+* [Leaflets](https://leafletjs.com/)    
+### Data Sources
+* [The City of Edinburgh Council](https://www.edinburgh.gov.uk/)
+
+
+## Team Members
+* [Andaleb Ali](mailto:s1885898@ed.ac.uk​)
+* [Shiqi Chen](mailto:s2437514@ed.ac.uk​)
+* [Haoyu Zhang](mailto:s2298227@ed.ac.uk)
